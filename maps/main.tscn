@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bocth4fjp61re"]
+
+[ext_resource type="PackedScene" uid="uid://crwwk14nwmgj3" path="res://models/car_model.tscn" id="1_keby1"]
+[ext_resource type="Shader" path="res://shaders/grid.gdshader" id="2_6nhep"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1ctet"]
+render_priority = 0
+shader = ExtResource("2_6nhep")
+
+[node name="Main" type="Node3D"]
+
+[node name="CarModel" parent="." instance=ExtResource("1_keby1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.88945, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.513706, 0.857966, 0, -0.857966, 0.513706, 0, 17.1227, 19.0868)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+size = Vector3(94.2431, 1, 130.467)
+material = SubResource("ShaderMaterial_1ctet")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -7.31235, -0.753367, 17.2505)
+polygon = PackedVector2Array(-4, 0, -4, 1, 2.22936, 3.7476, 2.25993, 0.183424)
+depth = 10.0
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32899, 0)
+visible = false
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.707107, 0.118422, -0.69712, 0, 0.985876, 0.167474, 0.707107, 0.118422, -0.69712, -15.0587, 3.24308, 18.3541)
+visible = false
